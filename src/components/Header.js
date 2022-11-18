@@ -1,6 +1,5 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import TimerIcon from "@mui/icons-material/Timer";
 
 function Header() {
   return (

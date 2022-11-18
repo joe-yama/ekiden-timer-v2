@@ -5,9 +5,6 @@ import ListItemText from "@mui/material/ListItemText";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 
 export default function Runner({ name, lap, time, laptime, onClick }) {
-  const primaryStr = name;
-  const secondaryStr = time;
-  const handleClick = () => {};
   return (
     <ListItem disablePadding>
       <ListItemButton onClick={onClick}>
