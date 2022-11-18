@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ekiden-timer",
+  "name": "Simple multi-runner stopwatch.",
   "icons": [
     {
       "src": "favicon.ico",
