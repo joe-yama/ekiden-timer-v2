@@ -1,4 +1,4 @@
-export function elapsed2timestr(elapsed, includeMs = true) {
+export function elapsed2timestr(elapsed, includeMs = true, includeH = true) {
   const h = parseInt(elapsed / 60 / 60 / 1000, 10)
     .toString()
     .padStart(2, "0");
@@ -11,8 +11,10 @@ export function elapsed2timestr(elapsed, includeMs = true) {
   const ms = parseInt((elapsed % 1000) / 10, 10)
     .toString()
     .padStart(2, "0");
-  const timestr = h + ":" + m + ":" + s;
-  return includeMs ? timestr + "." + ms : timestr;
+  let timestr = m + ":" + s;
+  if (includeH) timestr = h + ":" + timestr;
+  if (includeMs) timestr = timestr + "." + ms;
+  return timestr;
 }
 
 export default function Time({ elapsed }) {
