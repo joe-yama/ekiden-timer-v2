@@ -93,7 +93,7 @@ export function EkidenTimer(props) {
     for (const [runner, elapseds] of Object.entries(records)) {
       console.log(runner, elapseds);
       outputStr += runner + ",";
-      elapseds.map((elapsed) => {
+      elapseds.forEach((elapsed) => {
         outputStr += elapsed2timestr(elapsed, false, true) + ",";
       });
       outputStr += "\n";
