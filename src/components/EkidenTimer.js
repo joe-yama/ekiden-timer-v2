@@ -7,11 +7,14 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import Link from "@material-ui/core/Link";
 import Button from "@mui/material/Button";
 
 import NameForm from "./NameForm";
 import Runner from "./Runner";
 import Time, { elapsed2timestr } from "./Time";
+import { Divider } from "@mui/material";
 
 function ControlButtons({ onStart, onStop, onReset }) {
   return (
@@ -161,12 +164,20 @@ export function EkidenTimer(props) {
       <br />
       {/* <Board data={records} /> */}
       <Button
+        variant="outlined"
         size="small"
         startIcon={<DownloadIcon />}
         onClick={handleDownload}
       >
         Download Results
       </Button>
+      <br />
+      <br />
+      <Divider />
+      <br />
+      <Link href="https://github.com/joe-yama/ekiden-timer-v2" target="_blank">
+        <GitHubIcon />
+      </Link>
     </>
   );
 }
