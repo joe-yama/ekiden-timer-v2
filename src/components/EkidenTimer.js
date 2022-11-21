@@ -88,7 +88,7 @@ export function EkidenTimer(props) {
 
   const handleDownload = () => {
     console.log("download");
-    let outputStr = "name";
+    var outputStr = "name";
     outputStr += "\n";
     for (const [runner, elapseds] of Object.entries(records)) {
       console.log(runner, elapseds);
