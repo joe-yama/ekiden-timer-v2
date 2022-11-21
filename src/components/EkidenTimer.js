@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GridList, GridListTile, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 import { Grid } from "@material-ui/core";
 import IconButton from "@mui/material/IconButton";
@@ -8,12 +8,10 @@ import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
 import Button from "@mui/material/Button";
-import List from "@mui/material/List";
 
 import NameForm from "./NameForm";
-import Runner, { RunnerCard } from "./Runner";
+import Runner from "./Runner";
 import Time, { elapsed2timestr } from "./Time";
-import Board from "./Board";
 
 function ControlButtons({ onStart, onStop, onReset }) {
   return (
