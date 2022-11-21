@@ -91,11 +91,10 @@ export function EkidenTimer(props) {
     var outputStr = "name";
     outputStr += "\n";
     for (const [runner, elapseds] of Object.entries(records)) {
-      console.log(runner, elapseds);
       outputStr += runner + ",";
-      elapseds.forEach((elapsed) => {
+      for (const elapsed of elapseds) {
         outputStr += elapsed2timestr(elapsed, false, true) + ",";
-      });
+      }
       outputStr += "\n";
     }
     // const shouldJIS = false;
