@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 
 import { Grid } from "@material-ui/core";
 
@@ -14,8 +14,8 @@ import Time, { elapsed2timestr } from "./Time";
 // import Board from "./Board";
 import { Box, Divider } from "@mui/material";
 
-import Fab from "@mui/material/Fab";
-import AddIcon from "@mui/icons-material/Add";
+// import Fab from "@mui/material/Fab";
+// import AddIcon from "@mui/icons-material/Add";
 
 export function EkidenTimer(props) {
   const [elapsed, setElapsed] = useState(0);
@@ -158,9 +158,9 @@ export function EkidenTimer(props) {
       <Link href="https://github.com/joe-yama/ekiden-timer-v2" target="_blank">
         <GitHubIcon />
       </Link>
-      <Fab color="primary" aria-label="add">
+      {/* <Fab color="primary" aria-label="add">
         <AddIcon />
-      </Fab>
+      </Fab> */}
     </>
   );
 }
