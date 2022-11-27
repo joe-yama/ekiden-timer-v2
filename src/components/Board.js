@@ -5,6 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import React, { useState } from "react";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -18,43 +19,55 @@ function createData(name, calories, fat, carbs, protein) {
 //   createData("Gingerbread", 356, 16.0, 49, 3.9),
 // ];
 
+const range = (n) => [...Array(n).keys()];
+
 export default function Board({ data }) {
-  let maxLap = 0;
+  const [maxLap, setMaxLap] = useState(0);
   for (let elapseds in Object.values(data)) {
-    if (elapseds.length > maxLap) maxLap = elapseds.length;
+    if (elapseds.length > maxLap) setMaxLap(elapseds.length);
   }
 
-  const BoardHeader = (maxLap) => {
-    return (
-      <TableHead>
-        <TableRow>
-          <TableCell>名前</TableCell>
-          {Array.from(Array(maxLap), (v, k) => k).map((i) => {
-            <TableCell align="right">{`Lap ${i + 1}`}</TableCell>;
-          })}
-        </TableRow>
-      </TableHead>
-    );
-  };
+  // const BoardHeader = (maxLap) => {
+  //   return (
+  //     <TableHead>
+  //       <TableRow>
+  //         <TableCell>名前</TableCell>
+  //         {range(maxLap).map((i) => {
+  //           return <TableCell align="right">{`Lap ${i + 1}`}</TableCell>;
+  //         })}
+  //       </TableRow>
+  //     </TableHead>
+  //   );
+  // };
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <BoardHeader maxLap={maxLap} />
+        <TableHead>
+          <TableRow>
+            <TableCell>名前</TableCell>
+            {range(maxLap).map((i) => {
+              return <TableCell align="right">{`Lap ${i + 1}`}</TableCell>;
+            })}
+          </TableRow>
+        </TableHead>
+        {/* <BoardHeader maxLap={maxLap} /> */}
         <TableBody>
-          {Object.entries(data).map((runner, elapseds) => (
-            <TableRow
-              key={runner}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {runner}
-              </TableCell>
-              <TableCell align="right">c</TableCell>
-              <TableCell align="right">f</TableCell>
-              <TableCell align="right">C</TableCell>
-              <TableCell align="right">p</TableCell>
-            </TableRow>
+          {Object.entries(data).map((item, index) => (
+            <React.Fragment key={item[0]}>
+              <TableRow
+                key={item[0]}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {item[0]}
+                </TableCell>
+                <TableCell align="right">c</TableCell>
+                <TableCell align="right">f</TableCell>
+                <TableCell align="right">C</TableCell>
+                <TableCell align="right">p</TableCell>
+              </TableRow>
+            </React.Fragment>
           ))}
         </TableBody>
       </Table>

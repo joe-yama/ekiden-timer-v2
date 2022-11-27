@@ -1,19 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import InputAdornment from "@mui/material/InputAdornment";
 
-export default function RunnerForm({ onSubmit }) {
-  const [runner, setRunner] = useState("");
-
-  const handleChange = (event) => {
-    setRunner(event.target.value);
-  };
+export default function NameForm({ onSubmit, disabled }) {
+  const runnerRef = useRef(null);
 
   const handleSubmit = (event) => {
-    onSubmit(runner);
+    onSubmit(runnerRef.current.value);
     event.preventDefault();
   };
 
@@ -24,8 +20,7 @@ export default function RunnerForm({ onSubmit }) {
           <TextField
             required
             label="Runner Name"
-            onChange={handleChange}
-            value={runner}
+            inputRef={runnerRef}
             size="small"
             InputProps={{
               startAdornment: (
@@ -36,7 +31,7 @@ export default function RunnerForm({ onSubmit }) {
             }}
           />
         </label>
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="contained" disabled={disabled}>
           Add
         </Button>
       </Stack>

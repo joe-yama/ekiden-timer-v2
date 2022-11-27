@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography } from "@material-ui/core";
 
 import { Grid } from "@material-ui/core";
-import IconButton from "@mui/material/IconButton";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import PauseCircleIcon from "@mui/icons-material/PauseCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import DownloadIcon from "@mui/icons-material/Download";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Link from "@material-ui/core/Link";
@@ -14,27 +11,11 @@ import Button from "@mui/material/Button";
 import NameForm from "./NameForm";
 import Runner from "./Runner";
 import Time, { elapsed2timestr } from "./Time";
-import { Divider } from "@mui/material";
+// import Board from "./Board";
+import { Box, Divider } from "@mui/material";
 
-function ControlButtons({ onStart, onStop, onReset }) {
-  return (
-    <Grid container spacing={1} justifyContent="center">
-      <Grid item xs={2} />
-      <Grid item xs={8}>
-        <IconButton aria-label="start" onClick={onStart}>
-          <PlayCircleFilledIcon />
-        </IconButton>
-        <IconButton aria-label="stop" onClick={onStop}>
-          <PauseCircleIcon />
-        </IconButton>
-        <IconButton aria-label="reset" onClick={onReset}>
-          <DeleteIcon />
-        </IconButton>
-      </Grid>
-      <Grid item xs={2} />
-    </Grid>
-  );
-}
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 export function EkidenTimer(props) {
   const [elapsed, setElapsed] = useState(0);
@@ -118,33 +99,29 @@ export function EkidenTimer(props) {
 
   return (
     <>
-      <Grid container spacing={1} justifyContent="center">
-        <Grid item xs={12}>
-          <Typography variant="h3">
-            <Time elapsed={elapsed} />
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12}>
-          <ControlButtons
+      <Grid container justifyContent="center">
+        <Box
+          position="static"
+          sx={{
+            backgroundColor: "#fff",
+          }}
+        >
+          <Time
+            elapsed={elapsed}
             onStart={handleStart}
             onStop={handleStop}
             onReset={handleReset}
           />
-        </Grid>
-
-        <Grid item xs={12}>
-          <NameForm onSubmit={handleAddRunner} />
-        </Grid>
+        </Box>
       </Grid>
-      <br />
+      <NameForm onSubmit={handleAddRunner} disabled={isRunning} />
       <Grid container spacing={1} justifyContent="center">
         {Object.keys(records).map((runner) => {
           const lap = records[runner].length;
           const time = lap === 0 ? 0 : records[runner][lap - 1];
           const laptime =
             lap < 2
-              ? elapsed2timestr(0)
+              ? elapsed2timestr(0, true, false)
               : elapsed2timestr(time - records[runner][lap - 2], true, false);
           return (
             <React.Fragment key={runner}>
@@ -163,11 +140,14 @@ export function EkidenTimer(props) {
       </Grid>
       <br />
       {/* <Board data={records} /> */}
+      <br />
+      <br />
       <Button
         variant="outlined"
         size="small"
         startIcon={<DownloadIcon />}
         onClick={handleDownload}
+        disabled={isRunning}
       >
         Download Results
       </Button>
@@ -178,6 +158,9 @@ export function EkidenTimer(props) {
       <Link href="https://github.com/joe-yama/ekiden-timer-v2" target="_blank">
         <GitHubIcon />
       </Link>
+      <Fab color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
     </>
   );
 }
