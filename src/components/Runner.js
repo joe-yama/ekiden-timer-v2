@@ -18,7 +18,7 @@ export default function Runner({ name, lap, time, laptime, onClick }) {
         </ListItemIcon>
         <ListItemText
           primary={name.padEnd(4, "　")}
-          secondary={`${lap - 1}周`}
+          secondary={`ラップ${lap - 1}`}
         />
         <ListItemText primary={time} secondary={`laptime ${laptime}`} />
         <ListItemButton onClick={onClick}>
